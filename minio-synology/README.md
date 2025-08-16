@@ -1,7 +1,6 @@
 ### Storage
 
 MinIO object storage on [Synology CSI driver](../synology/).
-Single node deployment.
 
 ### Network
 
