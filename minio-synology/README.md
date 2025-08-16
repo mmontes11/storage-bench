@@ -6,7 +6,7 @@ MinIO object storage on [Synology CSI driver](../synology/).
 
 1Gbps
 
-# Mixed
+# Mixed - 1MiB object size
 
 ```bash
  warp mixed --host 10.0.0.90:443 \
@@ -76,7 +76,8 @@ Throughput, split into 298 x 1s:
  * Slowest: 18.6MiB/s, 22.45 obj/s
 ```
 
-# Get
+# Get - 1MiB object size
+
 
 ```bash
  warp get --host 10.0.0.90:443 \
@@ -102,7 +103,7 @@ Throughput, split into 297 x 1s:
  * Slowest: 107.1MiB/s, 107.09 obj/s
 ```
 
-# Put
+# Put - 1MiB object size
 
 ```bash
  warp put --host 10.0.0.90:443 \
@@ -124,5 +125,29 @@ Throughput, split into 297 x 1s:
  * Fastest: 76.2MiB/s, 76.22 obj/s
  * 50% Median: 58.4MiB/s, 58.35 obj/s
  * Slowest: 43.6MiB/s, 43.59 obj/s
+```
+
+# Put - 128MiB object size
+
+```bash
+ warp put --host 10.0.0.90:443 \
+  --access-key <access-key> \
+  --secret-key <secret-key> \
+  --concurrent 64 \
+  --obj.size 128MiB \
+  --duration 5m \
+  --tls \
+  --insecure
+```
+
+```
+Report: PUT. Concurrency: 64. Ran: 6m19s
+ * Average: 85.66 MiB/s, 0.67 obj/s
+ * Reqs: Avg: 95619.0ms, 50%: 95622.4ms, 90%: 95654.6ms, 99%: 95679.0ms, Fastest: 93505.5ms, Slowest: 98936.8ms, StdDev: 27.1ms
+
+Throughput, split into 379 x 1s:
+ * Fastest: 87.5MiB/s, 0.68 obj/s
+ * 50% Median: 85.2MiB/s, 0.67 obj/s
+ * Slowest: 82.9MiB/s, 0.65 obj/s
 ```
 
