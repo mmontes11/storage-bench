@@ -6,6 +6,7 @@ Storage benchmarks in Kubernetes
 
 - [topolvm](./topolvm)
 - [synology](./synology)
+- [minio-synology](./minio-synology)
 
 ### Kubernetes cluster
 
