@@ -151,3 +151,27 @@ Throughput, split into 379 x 1s:
  * Slowest: 82.9MiB/s, 0.65 obj/s
 ```
 
+# Put - 256MiB object size
+
+```bash
+ warp put --host 10.0.0.90:443 \
+  --access-key <access-key> \
+  --secret-key <secret-key> \
+  --concurrent 64 \
+  --obj.size 256MiB \
+  --duration 5m \
+  --tls \
+  --insecure
+```
+
+```
+Report: PUT. Concurrency: 64. Ran: 6m7s
+ * Average: 88.78 MiB/s, 0.35 obj/s
+ * Reqs: Avg: 184543.8ms, 50%: 184547.4ms, 90%: 184590.4ms, 99%: 184717.0ms, Fastest: 182123.8ms, Slowest: 186980.2ms, StdDev: 51.9ms
+
+Throughput, split into 367 x 1s:
+ * Fastest: 89.8MiB/s, 0.35 obj/s
+ * 50% Median: 87.8MiB/s, 0.34 obj/s
+ * Slowest: 87.8MiB/s, 0.34 obj/s
+```
+
