@@ -2,10 +2,6 @@
 
 SeaweedFS object storage on [Synology CSI driver](../synology/).
 
-### Network
-
-1Gbps
-
 ### Credentials
 
 ```bash
@@ -19,7 +15,7 @@ All SeaweedFS components are scheduled on `compute-large` nodes via nodeSelector
 
 ## Environment
 
-Deployed via [SeaweedFS Operator](https://github.com/seaweedfs/seaweedfs-operator) with the CR at [seaweed.yaml](https://github.com/mmontes11/k8s-infrastructure/blob/824b47b8ba07341d51908ac504d8e206aeef9e27/infrastructure/seaweedfs-operator/seaweedfs/seaweed.yaml) (commit [`824b47b`](https://github.com/mmontes11/k8s-infrastructure/commit/824b47b8ba07341d51908ac504d8e206aeef9e27)).
+Deployed via [SeaweedFS Operator](https://github.com/seaweedfs/seaweedfs-operator) with the CR at [seaweed.yaml](https://github.com/mmontes11/k8s-infrastructure/blob/824b47b8ba07341d51908ac504d8e206aeef9e27/infrastructure/seaweedfs-operator/seaweedfs/seaweed.yaml).
 
 | Component | Replicas | CPU Request | Memory Request | Memory Limit | Node Selector |
 |-----------|----------|-------------|----------------|--------------|---------------|
