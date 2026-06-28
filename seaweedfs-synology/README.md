@@ -567,80 +567,54 @@ Throughput, split into 301 x 1s:
  * Slowest: 41.4MiB/s, 0.32 obj/s
 ```
 
-# Comparison
+# Results
 
-## Environment Summary
+## Mixed 1MiB - external
 
-| Aspect | Scenario 1 | Scenario 2 |
-|--------|------------|------------|
-| master | compute-large | default |
-| filer | compute-large | default |
-| volume | compute-large | compute-large |
-| s3 | compute-large | compute-large |
-| admin | compute-large | default |
+| Metric | Scenario 1 | Scenario 2 |
+|--------|-----------|-----------|
+| Total throughput | 67.20 MiB/s | 59.47 MiB/s |
+| Total obj/s | 112.04 | 99.10 |
+| GET avg | 50.41 MiB/s | 44.60 MiB/s |
+| PUT avg | 16.79 MiB/s | 14.88 MiB/s |
+| DELETE avg | 11.21 obj/s | 9.94 obj/s |
+| STAT avg | 33.66 obj/s | 29.74 obj/s |
 
-## Benchmark Results
+## Mixed 1MiB - in-cluster
 
-### Mixed 1MiB - external
+| Metric | Scenario 1 | Scenario 2 |
+|--------|-----------|-----------|
+| Total throughput | 129.36 MiB/s | 115.18 MiB/s |
+| Total obj/s | 215.55 | 191.96 |
+| GET avg | 96.99 MiB/s | 86.39 MiB/s |
+| PUT avg | 32.37 MiB/s | 28.79 MiB/s |
+| DELETE avg | 21.73 obj/s | 19.32 obj/s |
+| STAT avg | 65.23 obj/s | 57.92 obj/s |
 
-| Metric | Scenario 1 | Scenario 2 | Difference |
-|--------|-----------|-----------|------------|
-| Total throughput | 67.20 MiB/s | 59.47 MiB/s | -11.5% |
-| Total obj/s | 112.04 | 99.10 | -11.5% |
-| GET avg | 50.41 MiB/s | 44.60 MiB/s | -11.5% |
-| PUT avg | 16.79 MiB/s | 14.88 MiB/s | -11.4% |
-| DELETE avg | 11.21 obj/s | 9.94 obj/s | -11.3% |
-| STAT avg | 33.66 obj/s | 29.74 obj/s | -11.6% |
+## Get 1MiB - in-cluster
 
-### Mixed 1MiB - in-cluster
+| Metric | Scenario 1 | Scenario 2 |
+|--------|-----------|-----------|
+| GET avg | 611.94 MiB/s | 630.80 MiB/s |
+| Avg latency | 127.0ms | 101.5ms |
 
-| Metric | Scenario 1 | Scenario 2 | Difference |
-|--------|-----------|-----------|------------|
-| Total throughput | 129.36 MiB/s | 115.18 MiB/s | -11.0% |
-| Total obj/s | 215.55 | 191.96 | -11.0% |
-| GET avg | 96.99 MiB/s | 86.39 MiB/s | -10.9% |
-| PUT avg | 32.37 MiB/s | 28.79 MiB/s | -11.1% |
-| DELETE avg | 21.73 obj/s | 19.32 obj/s | -11.1% |
-| STAT avg | 65.23 obj/s | 57.92 obj/s | -11.2% |
+## Get 128MiB - in-cluster
 
-### Get 1MiB - in-cluster
+| Metric | Scenario 1 | Scenario 2 |
+|--------|-----------|-----------|
+| GET avg | 114.32 MiB/s | 115.11 MiB/s |
+| Avg latency | 9050.6ms | 8925.8ms |
 
-| Metric | Scenario 1 | Scenario 2 | Difference |
-|--------|-----------|-----------|------------|
-| GET avg | 611.94 MiB/s | 630.80 MiB/s | +3.1% |
-| Avg latency | 127.0ms | 101.5ms | -20.1% |
-| P50 latency | 40.3ms | 103.9ms | +157.8% |
-| P90 latency | 264.1ms | 135.4ms | -48.7% |
+## Put 1MiB - in-cluster
 
-### Get 128MiB - in-cluster
+| Metric | Scenario 1 | Scenario 2 |
+|--------|-----------|-----------|
+| PUT avg | 100.41 MiB/s | 101.52 MiB/s |
+| Avg latency | 694.8ms | 764.2ms |
 
-| Metric | Scenario 1 | Scenario 2 | Difference |
-|--------|-----------|-----------|------------|
-| GET avg | 114.32 MiB/s | 115.11 MiB/s | +0.7% |
-| Avg latency | 9050.6ms | 8925.8ms | -1.4% |
+## Put 128MiB - in-cluster
 
-### Put 1MiB - in-cluster
-
-| Metric | Scenario 1 | Scenario 2 | Difference |
-|--------|-----------|-----------|------------|
-| PUT avg | 100.41 MiB/s | 101.52 MiB/s | +1.1% |
-| Avg latency | 694.8ms | 764.2ms | +10.0% |
-
-### Put 128MiB - in-cluster
-
-| Metric | Scenario 1 | Scenario 2 | Difference |
-|--------|-----------|-----------|------------|
-| PUT avg | 102.42 MiB/s | 106.17 MiB/s | +3.7% |
-| Avg latency | 9959.3ms | 9685.4ms | -2.7% |
-
-## Conclusion
-
-Moving master, filer, and admin from `compute-large` to default nodes has minimal impact on data-plane performance:
-
-- **External throughput** decreases ~11% across all operations (mixed 1MiB), likely due to increased latency to the master/filer metadata services running on slower default nodes
-- **In-cluster throughput** follows the same ~11% decrease for mixed operations, as the S3 gateway must still coordinate with master/filer over the internal network
-- **Read-only operations** (Get) are largely unaffected or slightly improved, as they bypass metadata-heavy operations
-- **Write operations** (Put) show negligible difference, as the data path (volume server) remains on `compute-large`
-- **Latency variance** increases in some cases (e.g., Get 1MiB P50 increased 158%), suggesting metadata operations on default nodes introduce more jitter
-
-**Recommendation:** For workloads where metadata operations are not the bottleneck (read-heavy, large objects), running master/filer/admin on default nodes is a reasonable cost-saving measure. For write-heavy or metadata-intensive workloads, Scenario 1 provides more consistent performance.
+| Metric | Scenario 1 | Scenario 2 |
+|--------|-----------|-----------|
+| PUT avg | 102.42 MiB/s | 106.17 MiB/s |
+| Avg latency | 9959.3ms | 9685.4ms |
