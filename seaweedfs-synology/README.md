@@ -6,7 +6,18 @@ SeaweedFS object storage on [Synology CSI driver](../synology/).
 
 1Gbps
 
-### SeaweedFS Configuration
+### Credentials
+
+```bash
+export S3_ACCESS_KEY=<access-key>
+export S3_SECRET_KEY=<access-secret-key>
+```
+
+# Scenario 1: all components running in compute-large
+
+All SeaweedFS components are scheduled on `compute-large` nodes via nodeSelector and tolerations.
+
+## Environment
 
 Deployed via [SeaweedFS Operator](https://github.com/seaweedfs/seaweedfs-operator) with the CR at [seaweed.yaml](https://github.com/mmontes11/k8s-infrastructure/blob/main/infrastructure/seaweedfs-operator/seaweedfs/seaweed.yaml).
 
@@ -32,14 +43,7 @@ Deployed via [SeaweedFS Operator](https://github.com/seaweedfs/seaweedfs-operato
 
 **Buckets:** `pvc`, `database`, `management`
 
-### Credentials
-
-```bash
-export S3_ACCESS_KEY=<access-key>
-export S3_SECRET_KEY=<access-secret-key>
-```
-
-# Mixed - 1MiB object size - external
+## Mixed - 1MiB object size - external
 
 ```bash
   warp mixed --host s3.mmontes-internal.duckdns.org \
@@ -116,7 +120,7 @@ Throughput, split into 298 x 1s:
  * Slowest: 14.2MiB/s, 14.16 obj/s
 ```
 
-# Mixed - 1MiB object size - in-cluster
+## Mixed - 1MiB object size - in-cluster
 
 ```bash
   warp mixed --host seaweedfs-s3.storage.svc.cluster.local:8333 \
@@ -193,7 +197,7 @@ Throughput, split into 300 x 1s:
  * Slowest: 9.7MiB/s, 9.74 obj/s
 ```
 
-# Get - 1MiB object size - in-cluster
+## Get - 1MiB object size - in-cluster
 
 
 ```bash
@@ -219,7 +223,7 @@ Throughput, split into 301 x 1s:
  * Slowest: 5.6MiB/s, 5.58 obj/s
 ```
 
-# Get - 128MiB object size - in-cluster
+## Get - 128MiB object size - in-cluster
 
 
 ```bash
@@ -245,7 +249,7 @@ Throughput, split into 307 x 1s:
  * Slowest: 13.6MiB/s, 0.11 obj/s
 ```
 
-# Put - 1MiB object size - in-cluster
+## Put - 1MiB object size - in-cluster
 
 ```bash
  warp put --host seaweedfs-s3.storage.svc.cluster.local:8333 \
@@ -270,7 +274,7 @@ Throughput, split into 302 x 1s:
 ```
 
 
-# Put - 128MiB object size - in-cluster
+## Put - 128MiB object size - in-cluster
 
 ```bash
  warp put --host seaweedfs-s3.storage.svc.cluster.local:8333 \
