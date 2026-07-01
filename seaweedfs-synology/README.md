@@ -53,130 +53,133 @@ Master, filer, and admin run on default nodes. Volume and S3 run on `compute-lar
 ```
 
 ```
-Report: DELETE. Concurrency: 64. Ran: 4m56s
- * Average: 9.94 obj/s
- * Reqs: Avg: 183.5ms, 50%: 27.2ms, 90%: 245.6ms, 99%: 4327.7ms, Fastest: 4.9ms, Slowest: 10060.9ms, StdDev: 658.4ms
+Reqs: 34666, Errs:0, Objs:34666, Bytes: 20.30GiB
+ -    DELETE Average: 12 Obj/s; Current 13 Obj/s, 34.2 ms/req
+ -       GET Average: 52 Obj/s, 52.1MiB/s; Current 60 Obj/s, 60.3MiB/s
+ -       PUT Average: 17 Obj/s, 17.3MiB/s; Current 17 Obj/s, 17.1MiB/s
+ -      STAT Average: 35 Obj/s; Current 27 Obj/s, 38.6 ms/req
 
-Throughput, split into 296 x 1s:
- * Fastest: 26.49 obj/s
- * 50% Median: 9.19 obj/s
+
+Report: DELETE. Concurrency: 64. Ran: 4m57s
+ * Average: 11.56 obj/s
+ * Reqs: Avg: 53.8ms, 50%: 36.2ms, 90%: 73.3ms, 99%: 495.6ms, Fastest: 5.8ms, Slowest: 5017.6ms, StdDev: 80.6ms
+
+Throughput, split into 297 x 1s:
+ * Fastest: 26.33 obj/s
+ * 50% Median: 11.57 obj/s
  * Slowest: 0.00 obj/s
 
 ──────────────────────────────────
 
 Report: GET. Concurrency: 64. Ran: 4m58s
- * Average: 44.60 MiB/s, 44.60 obj/s
- * Reqs: Avg: 911.4ms, 50%: 495.9ms, 90%: 2359.1ms, 99%: 5881.0ms, Fastest: 31.3ms, Slowest: 11308.2ms, StdDev: 1153.5ms
- * TTFB: Avg: 438ms, Best: 4ms, 25th: 51ms, Median: 137ms, 75th: 393ms, 90th: 1.162s, 99th: 4.945s, Worst: 10.82s StdDev: 914ms
+ * Average: 52.15 MiB/s, 52.15 obj/s
+ * Reqs: Avg: 868.3ms, 50%: 483.1ms, 90%: 2310.6ms, 99%: 4677.0ms, Fastest: 41.3ms, Slowest: 11756.7ms, StdDev: 988.6ms
+ * TTFB: Avg: 257ms, Best: 5ms, 25th: 27ms, Median: 34ms, 75th: 152ms, 90th: 761ms, 99th: 2.782s, Worst: 7.514s StdDev: 592ms
 
 Throughput, split into 298 x 1s:
- * Fastest: 74.4MiB/s, 74.45 obj/s
- * 50% Median: 49.2MiB/s, 49.22 obj/s
- * Slowest: 7.7MiB/s, 7.73 obj/s
+ * Fastest: 81.5MiB/s, 81.49 obj/s
+ * 50% Median: 57.7MiB/s, 57.65 obj/s
+ * Slowest: 5.9MiB/s, 5.90 obj/s
 
 ──────────────────────────────────
 
-Report: PUT. Concurrency: 64. Ran: 4m58s
- * Average: 14.88 MiB/s, 14.88 obj/s
- * Reqs: Avg: 1395.0ms, 50%: 791.6ms, 90%: 3701.4ms, 99%: 7152.9ms, Fastest: 37.8ms, Slowest: 15601.1ms, StdDev: 1579.2ms
- * TTFB: Avg: 1.386s, Best: 31ms, 25th: 395ms, Median: 783ms, 75th: 1.83s, 90th: 3.693s, 99th: 7.148s, Worst: 15.583s StdDev: 1.578s
+Report: PUT. Concurrency: 64. Ran: 4m57s
+ * Average: 17.35 MiB/s, 17.35 obj/s
+ * Reqs: Avg: 1151.2ms, 50%: 609.2ms, 90%: 3053.1ms, 99%: 5579.9ms, Fastest: 41.9ms, Slowest: 14700.9ms, StdDev: 1215.5ms
+ * TTFB: Avg: 1.086s, Best: 33ms, 25th: 329ms, Median: 533ms, 75th: 1.437s, 90th: 2.999s, 99th: 5.53s, Worst: 14.641s StdDev: 1.223s
 
-Throughput, split into 298 x 1s:
- * Fastest: 28.0MiB/s, 28.00 obj/s
- * 50% Median: 15.5MiB/s, 15.50 obj/s
- * Slowest: 3.9MiB/s, 3.86 obj/s
+Throughput, split into 297 x 1s:
+ * Fastest: 30.1MiB/s, 30.13 obj/s
+ * 50% Median: 17.8MiB/s, 17.77 obj/s
+ * Slowest: 1030.8KiB/s, 1.01 obj/s
 
 ──────────────────────────────────
 
 Report: STAT. Concurrency: 64. Ran: 4m57s
- * Average: 29.74 obj/s
- * Reqs: Avg: 174.6ms, 50%: 20.8ms, 90%: 192.0ms, 99%: 4696.6ms, Fastest: 2.3ms, Slowest: 11104.2ms, StdDev: 713.0ms
+ * Average: 34.69 obj/s
+ * Reqs: Avg: 47.8ms, 50%: 29.2ms, 90%: 48.1ms, 99%: 428.0ms, Fastest: 2.2ms, Slowest: 5017.6ms, StdDev: 83.6ms
 
 Throughput, split into 297 x 1s:
- * Fastest: 64.18 obj/s
- * 50% Median: 32.00 obj/s
+ * Fastest: 68.89 obj/s
+ * 50% Median: 35.64 obj/s
  * Slowest: 0.00 obj/s
 
 
 ──────────────────────────────────
 
 Report: Total. Concurrency: 64. Ran: 4m58s
- * Average: 59.47 MiB/s, 99.10 obj/s
+ * Average: 69.52 MiB/s, 115.83 obj/s
 
 Throughput, split into 298 x 1s:
- * Fastest: 94.6MiB/s, 180.74 obj/s
- * 50% Median: 60.7MiB/s, 107.90 obj/s
- * Slowest: 12.4MiB/s, 12.52 obj/s
+ * Fastest: 99.5MiB/s, 189.21 obj/s
+ * 50% Median: 75.7MiB/s, 124.92 obj/s
+ * Slowest: 8.6MiB/s, 11.38 obj/s
 ```
 
 ## Mixed - 1MiB object size - in-cluster
 
 ```bash
-  warp mixed --host seaweedfs-s3.storage.svc.cluster.local:8333 \
-  --access-key $S3_ACCESS_KEY \
-  --secret-key $S3_SECRET_KEY \
-  --concurrent 64 \
-  --objects 1000 \
-  --obj.size 1MiB \
-  --duration 5m \
-  --insecure
-```
+Reqs: 103811, Errs:0, Objs:103811, Bytes: 60.80GiB
+ -    DELETE Average: 34 Obj/s; Current 5 Obj/s, 6.0 ms/req
+ -       GET Average: 154 Obj/s, 153.9MiB/s; Current 41 Obj/s, 40.7MiB
+ -       PUT Average: 51 Obj/s, 51.3MiB/s; Current 17 Obj/s, 16.7MiB/s
+ -      STAT Average: 103 Obj/s; Current 17 Obj/s, 3.9 ms/req
 
-```
-Report: DELETE. Concurrency: 64. Ran: 4m56s
- * Average: 19.32 obj/s
- * Reqs: Avg: 7.6ms, 50%: 5.9ms, 90%: 12.5ms, 99%: 38.8ms, Fastest: 2.0ms, Slowest: 243.9ms, StdDev: 6.7ms
 
-Throughput, split into 296 x 1s:
- * Fastest: 90.82 obj/s
- * 50% Median: 16.00 obj/s
+Report: DELETE. Concurrency: 64. Ran: 4m57s
+ * Average: 34.22 obj/s
+ * Reqs: Avg: 13.6ms, 50%: 10.5ms, 90%: 23.4ms, 99%: 83.6ms, Fastest: 1.7ms, Slowest: 1096.6ms, StdDev: 15.2ms
+
+Throughput, split into 297 x 1s:
+ * Fastest: 122.39 obj/s
+ * 50% Median: 30.73 obj/s
  * Slowest: 0.00 obj/s
 
 ──────────────────────────────────
 
-Report: GET. Concurrency: 64. Ran: 4m58s
- * Average: 86.39 MiB/s, 86.39 obj/s
- * Reqs: Avg: 392.9ms, 50%: 204.6ms, 90%: 784.3ms, 99%: 3872.2ms, Fastest: 2.0ms, Slowest: 7564.6ms, StdDev: 705.7ms
- * TTFB: Avg: 390ms, Best: 1ms, 25th: 46ms, Median: 201ms, 75th: 406ms, 90th: 782ms, 99th: 3.87s, Worst: 7.561s StdDev: 706ms
+Report: GET. Concurrency: 64. Ran: 4m57s
+ * Average: 153.92 MiB/s, 153.92 obj/s
+ * Reqs: Avg: 241.9ms, 50%: 143.3ms, 90%: 484.3ms, 99%: 2313.1ms, Fastest: 1.8ms, Slowest: 8398.0ms, StdDev: 414.4ms
+ * TTFB: Avg: 238ms, Best: 1ms, 25th: 47ms, Median: 139ms, 75th: 248ms, 90th: 481ms, 99th: 2.309s, Worst: 8.366s StdDev: 414ms
 
-Throughput, split into 298 x 1s:
- * Fastest: 415.2MiB/s, 415.19 obj/s
- * 50% Median: 72.9MiB/s, 72.87 obj/s
- * Slowest: 2.7MiB/s, 2.75 obj/s
-
-──────────────────────────────────
-
-Report: PUT. Concurrency: 64. Ran: 4m58s
- * Average: 28.79 MiB/s, 28.79 obj/s
- * Reqs: Avg: 1315.3ms, 50%: 647.3ms, 90%: 3856.8ms, 99%: 6605.1ms, Fastest: 16.6ms, Slowest: 9852.4ms, StdDev: 1672.5ms
- * TTFB: Avg: 1.31s, Best: 12ms, 25th: 236ms, Median: 642ms, 75th: 1.697s, 90th: 3.852s, 99th: 6.6s, Worst: 9.848s StdDev: 1.673s
-
-Throughput, split into 298 x 1s:
- * Fastest: 136.8MiB/s, 136.76 obj/s
- * 50% Median: 22.2MiB/s, 22.24 obj/s
- * Slowest: 4.2MiB/s, 4.18 obj/s
+Throughput, split into 297 x 1s:
+ * Fastest: 543.3MiB/s, 543.31 obj/s
+ * 50% Median: 142.2MiB/s, 142.23 obj/s
+ * Slowest: 5.1MiB/s, 5.11 obj/s
 
 ──────────────────────────────────
 
-Report: STAT. Concurrency: 64. Ran: 4m56s
- * Average: 57.92 obj/s
- * Reqs: Avg: 5.2ms, 50%: 3.8ms, 90%: 9.4ms, 99%: 27.8ms, Fastest: 1.2ms, Slowest: 244.1ms, StdDev: 5.8ms
+Report: PUT. Concurrency: 64. Ran: 4m57s
+ * Average: 51.29 MiB/s, 51.29 obj/s
+ * Reqs: Avg: 592.6ms, 50%: 297.5ms, 90%: 1647.2ms, 99%: 3677.3ms, Fastest: 15.4ms, Slowest: 8347.3ms, StdDev: 818.8ms
+ * TTFB: Avg: 588ms, Best: 12ms, 25th: 137ms, Median: 293ms, 75th: 651ms, 90th: 1.643s, 99th: 3.672s, Worst: 8.335s StdDev: 819ms
 
-Throughput, split into 296 x 1s:
- * Fastest: 270.55 obj/s
- * 50% Median: 48.00 obj/s
+Throughput, split into 297 x 1s:
+ * Fastest: 179.7MiB/s, 179.73 obj/s
+ * 50% Median: 44.8MiB/s, 44.79 obj/s
+ * Slowest: 3.0MiB/s, 3.04 obj/s
+
+──────────────────────────────────
+
+Report: STAT. Concurrency: 64. Ran: 4m57s
+ * Average: 102.58 obj/s
+ * Reqs: Avg: 9.8ms, 50%: 6.8ms, 90%: 18.1ms, 99%: 64.4ms, Fastest: 1.0ms, Slowest: 1103.6ms, StdDev: 16.8ms
+
+Throughput, split into 297 x 1s:
+ * Fastest: 360.72 obj/s
+ * 50% Median: 93.00 obj/s
  * Slowest: 0.00 obj/s
 
 
 ──────────────────────────────────
 
-Report: Total. Concurrency: 64. Ran: 4m58s
- * Average: 115.18 MiB/s, 191.96 obj/s
+Report: Total. Concurrency: 64. Ran: 4m57s
+ * Average: 205.21 MiB/s, 342.01 obj/s
 
-Throughput, split into 298 x 1s:
- * Fastest: 552.0MiB/s, 913.31 obj/s
- * 50% Median: 92.8MiB/s, 162.85 obj/s
- * Slowest: 9.2MiB/s, 9.21 obj/s
+Throughput, split into 297 x 1s:
+ * Fastest: 719.7MiB/s, 1191.99 obj/s
+ * 50% Median: 181.8MiB/s, 313.98 obj/s
+ * Slowest: 8.1MiB/s, 8.14 obj/s
 ```
 
 ## Get - 1MiB object size - in-cluster
