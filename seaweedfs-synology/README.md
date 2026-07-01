@@ -284,35 +284,43 @@ Throughput, split into 304 x 1s:
  * Slowest: 73.7MiB/s, 0.58 obj/s
 ```
 
-# Minio comparison
+# MinIO comparison
 
-## Mixed 1MiB
+All MinIO benchmarks run over the external network (`10.0.0.90:443`, TLS). SeaweedFS numbers are from the matching external run where available.
 
-| Metric | SeaweedFS | MinIO |
-|--------|-----------|-------|
-| Total throughput | 115.18 MiB/s | 105.92 MiB/s |
-| Total obj/s | 191.96 | 176.52 |
-| GET avg | 86.39 MiB/s | 79.43 MiB/s |
-| PUT avg | 28.79 MiB/s | 26.49 MiB/s |
-| DELETE avg | 19.32 obj/s | 17.67 obj/s |
-| STAT avg | 57.92 obj/s | 52.93 obj/s |
+## Mixed 1MiB — external (fair comparison)
 
-## Get 1MiB
+| Metric | SeaweedFS (external) | MinIO (external) |
+|--------|---------------------|------------------|
+| Total throughput | 69.52 MiB/s | 105.92 MiB/s |
+| Total obj/s | 115.83 | 176.52 |
+| GET avg | 52.15 MiB/s | 79.43 MiB/s |
+| PUT avg | 17.35 MiB/s | 26.49 MiB/s |
+| DELETE avg | 11.56 obj/s | 17.67 obj/s |
+| STAT avg | 34.69 obj/s | 52.93 obj/s |
 
-| Metric | SeaweedFS | MinIO |
-|--------|-----------|-------|
+MinIO leads the mixed workload over the external network by ~52% in total throughput.
+
+## Get 1MiB — in-cluster vs external
+
+| Metric | SeaweedFS (in-cluster) | MinIO (external) |
+|--------|----------------------|-----------------|
 | GET avg | 666.55 MiB/s | 111.69 MiB/s |
 
-## Put 1MiB
+**Not directly comparable** — SeaweedFS tested in-cluster (plain HTTP, low-latency CNI), MinIO tested over external 1Gbps with TLS. The in-cluster advantage is primarily network-related, not storage-engine-related.
 
-| Metric | SeaweedFS | MinIO |
-|--------|-----------|-------|
+## Put 1MiB — in-cluster vs external
+
+| Metric | SeaweedFS (in-cluster) | MinIO (external) |
+|--------|----------------------|-----------------|
 | PUT avg | 101.99 MiB/s | 57.87 MiB/s |
 
-## Put 128MiB
+**Not directly comparable** — same network condition mismatch as above.
 
-| Metric | SeaweedFS | MinIO |
-|--------|-----------|-------|
+## Put 128MiB — in-cluster vs external
+
+| Metric | SeaweedFS (in-cluster) | MinIO (external) |
+|--------|----------------------|-----------------|
 | PUT avg | 104.31 MiB/s | 85.66 MiB/s |
 
-SeaweedFS outperforms MinIO across all benchmarks, with particularly significant advantages in read throughput (6x for 1MiB gets) and write performance (1.8x for 1MiB puts, 1.2x for 128MiB puts).
+**Not directly comparable** — same network condition mismatch as above. MinIO shows more stable throughput (StdDev: 27.1ms vs 2278.4ms).
