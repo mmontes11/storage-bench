@@ -283,3 +283,36 @@ Throughput, split into 304 x 1s:
  * 50% Median: 93.1MiB/s, 0.73 obj/s
  * Slowest: 73.7MiB/s, 0.58 obj/s
 ```
+
+# Minio comparison
+
+## Mixed 1MiB
+
+| Metric | SeaweedFS | MinIO |
+|--------|-----------|-------|
+| Total throughput | 115.18 MiB/s | 105.92 MiB/s |
+| Total obj/s | 191.96 | 176.52 |
+| GET avg | 86.39 MiB/s | 79.43 MiB/s |
+| PUT avg | 28.79 MiB/s | 26.49 MiB/s |
+| DELETE avg | 19.32 obj/s | 17.67 obj/s |
+| STAT avg | 57.92 obj/s | 52.93 obj/s |
+
+## Get 1MiB
+
+| Metric | SeaweedFS | MinIO |
+|--------|-----------|-------|
+| GET avg | 666.55 MiB/s | 111.69 MiB/s |
+
+## Put 1MiB
+
+| Metric | SeaweedFS | MinIO |
+|--------|-----------|-------|
+| PUT avg | 101.99 MiB/s | 57.87 MiB/s |
+
+## Put 128MiB
+
+| Metric | SeaweedFS | MinIO |
+|--------|-----------|-------|
+| PUT avg | 104.31 MiB/s | 85.66 MiB/s |
+
+SeaweedFS outperforms MinIO across all benchmarks, with particularly significant advantages in read throughput (6x for 1MiB gets) and write performance (1.8x for 1MiB puts, 1.2x for 128MiB puts).
