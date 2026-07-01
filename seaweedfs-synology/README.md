@@ -198,14 +198,14 @@ Throughput, split into 297 x 1s:
 
 ```
 Report: GET. Concurrency: 64. Ran: 4m57s
- * Average: 630.80 MiB/s, 630.80 obj/s
- * Reqs: Avg: 101.5ms, 50%: 103.9ms, 90%: 135.4ms, 99%: 179.0ms, Fastest: 2.7ms, Slowest: 3001.7ms, StdDev: 34.9ms
- * TTFB: Avg: 56ms, Best: 1ms, 25th: 40ms, Median: 59ms, 75th: 71ms, 90th: 84ms, 99th: 129ms, Worst: 2.929s StdDev: 32ms
+ * Average: 666.55 MiB/s, 666.55 obj/s
+ * Reqs: Avg: 96.1ms, 50%: 95.7ms, 90%: 133.4ms, 99%: 256.8ms, Fastest: 3.0ms, Slowest: 2137.2ms, StdDev: 52.1ms
+ * TTFB: Avg: 71ms, Best: 2ms, 25th: 49ms, Median: 71ms, 75th: 88ms, 90th: 106ms, 99th: 233ms, Worst: 2.109s StdDev: 51ms
 
 Throughput, split into 297 x 1s:
- * Fastest: 714.0MiB/s, 714.04 obj/s
- * 50% Median: 632.6MiB/s, 632.63 obj/s
- * Slowest: 493.3MiB/s, 493.32 obj/s
+ * Fastest: 759.0MiB/s, 759.04 obj/s
+ * 50% Median: 668.7MiB/s, 668.69 obj/s
+ * Slowest: 550.1MiB/s, 550.05 obj/s
 ```
 
 ## Get - 128MiB object size - in-cluster
@@ -223,15 +223,15 @@ Throughput, split into 297 x 1s:
 ```
 
 ```
-Report: GET. Concurrency: 8. Ran: 5m3s
- * Average: 115.11 MiB/s, 0.90 obj/s
- * Reqs: Avg: 8925.8ms, 50%: 9363.0ms, 90%: 12734.6ms, 99%: 12734.6ms, Fastest: 1443.6ms, Slowest: 18840.1ms, StdDev: 2463.1ms
- * TTFB: Avg: 1.949s, Best: 3ms, 25th: 1.678s, Median: 2.12s, 75th: 2.67s, 90th: 3.023s, 99th: 3.023s, Worst: 5.342s StdDev: 734ms
+Report: GET. Concurrency: 8. Ran: 5m2s
+ * Average: 136.79 MiB/s, 1.07 obj/s
+ * Reqs: Avg: 7791.3ms, 50%: 8318.4ms, 90%: 12227.6ms, 99%: 12355.7ms, Fastest: 210.7ms, Slowest: 15877.6ms, StdDev: 2840.4ms
+ * TTFB: Avg: 1.674s, Best: 3ms, 25th: 1.125s, Median: 1.894s, 75th: 2.576s, 90th: 3.161s, 99th: 3.256s, Worst: 4.823s StdDev: 960ms
 
-Throughput, split into 303 x 1s:
- * Fastest: 285.2MiB/s, 2.23 obj/s
- * 50% Median: 108.2MiB/s, 0.85 obj/s
- * Slowest: 65.4MiB/s, 0.51 obj/s
+Throughput, split into 302 x 1s:
+ * Fastest: 393.2MiB/s, 3.07 obj/s
+ * 50% Median: 127.3MiB/s, 0.99 obj/s
+ * Slowest: 72.3MiB/s, 0.56 obj/s
 ```
 
 ## Put - 1MiB object size - in-cluster
@@ -247,15 +247,15 @@ Throughput, split into 303 x 1s:
 ```
 
 ```
-Report: PUT. Concurrency: 64. Ran: 5m0s
- * Average: 101.52 MiB/s, 101.52 obj/s
- * Reqs: Avg: 764.2ms, 50%: 276.5ms, 90%: 1379.7ms, 99%: 6460.6ms, Fastest: 17.2ms, Slowest: 11139.9ms, StdDev: 1517.0ms
- * TTFB: Avg: 758ms, Best: 13ms, 25th: 237ms, Median: 270ms, 75th: 331ms, 90th: 1.373s, 99th: 6.453s, Worst: 11.134s StdDev: 1.517s
+Report: PUT. Concurrency: 64. Ran: 5m3s
+ * Average: 101.99 MiB/s, 101.99 obj/s
+ * Reqs: Avg: 867.0ms, 50%: 391.1ms, 90%: 1262.2ms, 99%: 6761.5ms, Fastest: 32.6ms, Slowest: 10735.1ms, StdDev: 1522.2ms
+ * TTFB: Avg: 861ms, Best: 29ms, 25th: 356ms, Median: 385ms, 75th: 453ms, 90th: 1.256s, 99th: 6.756s, Worst: 10.731s StdDev: 1.522s
 
-Throughput, split into 300 x 1s:
- * Fastest: 526.1MiB/s, 526.09 obj/s
- * 50% Median: 14.8MiB/s, 14.80 obj/s
- * Slowest: 6.2MiB/s, 6.16 obj/s
+Throughput, split into 303 x 1s:
+ * Fastest: 522.3MiB/s, 522.26 obj/s
+ * 50% Median: 12.1MiB/s, 12.10 obj/s
+ * Slowest: 6.0MiB/s, 5.99 obj/s
 ```
 
 
@@ -266,19 +266,20 @@ Throughput, split into 300 x 1s:
   --access-key $S3_ACCESS_KEY \
   --secret-key $S3_SECRET_KEY \
   --concurrent 8 \
+  --objects 50 \
   --obj.size 128MiB \
   --duration 5m \
   --insecure
 ```
 
 ```
-Report: PUT. Concurrency: 8. Ran: 5m1s
- * Average: 106.17 MiB/s, 0.83 obj/s
- * Reqs: Avg: 9685.4ms, 50%: 10293.3ms, 90%: 12005.2ms, 99%: 12011.8ms, Fastest: 1049.9ms, Slowest: 16394.3ms, StdDev: 1965.7ms
- * TTFB: Avg: 4.601s, Best: 266ms, 25th: 3.564s, Median: 4.766s, 75th: 6.983s, 90th: 7.862s, 99th: 7.874s, Worst: 14.364s StdDev: 2.453s
+Report: PUT. Concurrency: 8. Ran: 5m4s
+ * Average: 104.31 MiB/s, 0.81 obj/s
+ * Reqs: Avg: 9816.5ms, 50%: 10400.6ms, 90%: 12753.1ms, 99%: 12753.1ms, Fastest: 1628.4ms, Slowest: 19434.3ms, StdDev: 2278.4ms
+ * TTFB: Avg: 4.795s, Best: 279ms, 25th: 3.078s, Median: 5.771s, 75th: 7.975s, 90th: 8.873s, 99th: 8.873s, Worst: 14.031s StdDev: 3.281s
 
-Throughput, split into 301 x 1s:
- * Fastest: 216.9MiB/s, 1.69 obj/s
- * 50% Median: 99.3MiB/s, 0.78 obj/s
- * Slowest: 41.4MiB/s, 0.32 obj/s
+Throughput, split into 304 x 1s:
+ * Fastest: 217.7MiB/s, 1.70 obj/s
+ * 50% Median: 93.1MiB/s, 0.73 obj/s
+ * Slowest: 73.7MiB/s, 0.58 obj/s
 ```
