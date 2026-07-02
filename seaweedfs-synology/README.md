@@ -241,6 +241,7 @@ Throughput, split into 302 x 1s:
   --access-key $S3_ACCESS_KEY \
   --secret-key $S3_SECRET_KEY \
   --concurrent 64 \
+  --objects 1000 \
   --obj.size 1MiB \
   --duration 5m \
   --insecure
